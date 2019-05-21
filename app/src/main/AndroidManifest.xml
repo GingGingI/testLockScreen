@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" package="com.example.testlockscreen">
 
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
             android:allowBackup="true"
@@ -24,8 +24,8 @@
             android:label="@string/app_name"
             android:excludeFromRecents="true"/>
 
-
         <service android:name=".service.lockScreenService"/>
+
         <receiver android:name=".broadcast.lockBroadcastReceiver"
                   android:enabled="true"
                   android:exported="false"

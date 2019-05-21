@@ -13,15 +13,9 @@ class lockBroadcastReceiver: BroadcastReceiver() {
             Intent.ACTION_SCREEN_ON -> {
                 Log.i("BroadcastReceiver", "ON")
                 val i = Intent(context, testLockScreen::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }
-
-                val pendingIntent = PendingIntent.getActivity(context,0, i, 0)
-                try {
-                    pendingIntent.send()
-                } catch (pe: PendingIntent.CanceledException) {
-                    pe.printStackTrace()
-                }
+                context?.startActivity(i)
             }
             Intent.ACTION_SCREEN_OFF -> {
                 Log.i("BroadcastReceiver", "OFF")
