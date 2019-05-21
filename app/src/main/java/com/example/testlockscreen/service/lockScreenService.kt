@@ -11,7 +11,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.testlockscreen.R
 import com.example.testlockscreen.broadcast.lockBroadcastReceiver
@@ -26,11 +25,9 @@ class lockScreenService: Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground()
-        } else {
-            startForeground(1, Notification())
-        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startForeground()
+        else startForeground(1, Notification())
+
         intent notNull { initFilter() }
         return START_STICKY
     }
@@ -46,7 +43,7 @@ class lockScreenService: Service() {
         registerReceiver(lockReceiver, filter)
     }
 
-//    Android Oreo부터
+//    Android Oreo부터 서비스에 채널을 설정해줘야함.
     @TargetApi(Build.VERSION_CODES.O)
     private fun startForeground() {
         val Channel_ID = "TEST_LOCKSCREEN_CHANNEL"
