@@ -15,6 +15,11 @@ class testLockScreen: AppCompatActivity() {
         flagInit()
         setContentView(R.layout.lock_screen)
 
+        setClock()
+    }
+
+    private fun setClock() {
+
     }
 
     @SuppressLint("NewApi")

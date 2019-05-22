@@ -7,6 +7,7 @@
         android:background="#333333">
 
     <TextView
+            android:id="@+id/clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -15,6 +16,21 @@
 
             android:textColor="#eee"
             android:textSize="55sp"
-            android:text="Hello"/>
+            android:text="00:00"/>
+    <TextView
+            android:id="@+id/ampm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="5dp"
+
+            android:layout_alignBottom="@id/clock"
+            android:layout_toRightOf="@id/clock"
+
+            android:textColor="#eee"
+            android:textSize="25dp"
+
+            android:text="Am"
+/>
 
 </RelativeLayout>
