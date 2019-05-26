@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".lockScreen.testLockScreen"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/LockScreenTheme"
             android:excludeFromRecents="true"/>
 
         <service android:name=".service.lockScreenService"/>
