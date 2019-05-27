@@ -26,7 +26,6 @@ class testLockScreen: AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        finish()
     }
 
     @SuppressLint("NewApi")
