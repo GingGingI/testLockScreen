@@ -18,17 +18,19 @@ class lockBroadcastReceiver: BroadcastReceiver() {
         val lockScreenMode = pref?.getBoolean(lockScreenMode, false) ?: false
 
         when(intent?.action) {
-            Intent.ACTION_SCREEN_ON -> if (lockScreenMode) {
-                val hour = getHour()
-                Log.i("BroadcastReceiver", "ON At $hour")
+            Intent.ACTION_SCREEN_ON ->{
+                Log.i("BroadcastReceiver", "On")
+            }
+            Intent.ACTION_SCREEN_OFF ->  if (lockScreenMode) {
+            val hour = getHour()
+            Log.i("BroadcastReceiver", "ON At $hour")
 
-                val i = Intent(context, testLockScreen::class.java)
-                    .apply { addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) }
-                context?.startActivity(i)
-            }
-            Intent.ACTION_SCREEN_OFF -> {
-                Log.i("BroadcastReceiver", "OFF")
-            }
+            val i = Intent(context, testLockScreen::class.java)
+                .apply {
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                }
+            context?.startActivity(i)
+        }
             Intent.ACTION_BOOT_COMPLETED -> {
                 Log.i("BroadcastReceiver", "BOOT")
             }

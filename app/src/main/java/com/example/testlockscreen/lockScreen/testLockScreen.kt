@@ -16,7 +16,6 @@ class testLockScreen: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         flagInit()
         setContentView(R.layout.lock_screen)
-        Log.i("hi","start")
         setClock()
     }
 
@@ -24,24 +23,29 @@ class testLockScreen: AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.e("lifeCycle", "resume")
+//        ThreadOn
+    }
+
     override fun onPause() {
         super.onPause()
+        Log.e("lifeCycle", "pause")
+//        ThreadOff
     }
 
     @SuppressLint("NewApi")
     private fun flagInit() {
-
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.run {
             decorView.systemUiVisibility = (
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_IMMERSIVE or
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                    View.SYSTEM_UI_FLAG_FULLSCREEN)
 
-            setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR,
-                WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR)
+            setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) setShowWhenLocked(true)
             else addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
